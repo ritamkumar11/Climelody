@@ -272,10 +272,13 @@
 }
 
 /* Mobile tweaks */
-@media (max-width: 640px) {
-  .hNav {
-    width: 100%;
-    border-radius: 20;
+@media (max-width:640px){
+  .hNav{
+    width:100%;
+    border-radius:20px;          
+    margin:10px;                 
+    background-clip:padding-box; 
+    overflow:hidden;             
   }
   .wCont {
     width: 100%;
