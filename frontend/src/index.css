@@ -20,3 +20,14 @@ a {
   color: inherit;
 }
 
+/* iOS Safari fixes */
+html {
+  -webkit-text-size-adjust: 100%;  /* prevent font auto-resize */
+}
+
+input,
+button {
+  font-size: 16px;  /* stops Safari auto-zoom when tapping small inputs */
+}
+
+
