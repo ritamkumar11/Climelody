@@ -54,7 +54,10 @@ const Home = () => {
       );
 
       const { latitude, longitude } = position.coords;
-      const res = await axios.post("/api/weather", { lat: latitude, lon: longitude });
+      const res = await axios.post("/api/weather", {
+        lat: latitude,
+        lon: longitude,
+      });
 
       const w = res.data?.weather ?? null;
       setWeather(w);
@@ -80,7 +83,9 @@ const Home = () => {
       setErrorWeather("");
       setLoadingWeather(true);
 
-      const res = await axios.get("/api/weather/by-city", { params: { city: q } });
+      const res = await axios.get("/api/weather/by-city", {
+        params: { city: q },
+      });
       const w = res.data?.weather ?? null;
       setWeather(w);
       setCity(res.data?.city || q);
@@ -204,18 +209,24 @@ const Home = () => {
         <div
           className="wCont"
           style={{
-            backgroundImage: `url(${getWeatherBackground(weather?.weather?.[0]?.main)})`,
+            backgroundImage: `url(${getWeatherBackground(
+              weather?.weather?.[0]?.main
+            )})`,
           }}
         >
           <div className="wLoc">📍{city || "—"}</div>
-          <div className="wTemp">🌡️{displayTempC != null ? `${displayTempC} °C` : "—"}</div>
+          <div className="wTemp">
+            🌡️{displayTempC != null ? `${displayTempC} °C` : "—"}
+          </div>
           <div className="wClimate">{weather?.weather?.[0]?.main ?? "—"}</div>
         </div>
       )}
 
       {/* Music Section */}
       <div className="mCont">
-        <div className="mHeading" style={{color:'Black'}}>Music based on Weather</div>
+        <div className="mHeading" style={{ color: "Black" }}>
+          Music based on Weather
+        </div>
 
         <div className="mSuggestion">
           {loadingMusic && <p style={{ marginTop: 12 }}>Loading music…</p>}
@@ -225,7 +236,9 @@ const Home = () => {
           )}
 
           {!loadingMusic && !errorMusic && songs.length === 0 && (
-            <p style={{ marginTop: 12 }}>No songs suggested for this weather.</p>
+            <p style={{ marginTop: 12 }}>
+              No songs suggested for this weather.
+            </p>
           )}
 
           {!loadingMusic && !errorMusic && songs.length > 0 && (
@@ -248,7 +261,9 @@ const Home = () => {
 
                 return (
                   <div className="mItem" key={key}>
-                    <img className="mCover" src={cover} alt={title} />
+                    <div className="mCoverWrap">
+                      <img className="mCover" src={cover} alt={title} />
+                    </div>{" "}
                     <h4 className="mTitle">{title}</h4>
                     <p className="mArtist">{artist}</p>
                     {preview ? (
